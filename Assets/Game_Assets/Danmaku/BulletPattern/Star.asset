@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d41e28890ec02e04dbc20df58e31d3a0, type: 3}
+  m_Name: Star
+  m_EditorClassIdentifier: 
+  bulletNumber: 5
+  speed: 3
+  lifetime: 400
+  damage: 1
+  displacementDistance:
+    x: 0
+    y: 0
+  innerCircleSize: 0
+  minRotation: 0
+  maxRotation: 360
+  FireTime: 0
+  GapTime: 0
+  StopTime: 0
