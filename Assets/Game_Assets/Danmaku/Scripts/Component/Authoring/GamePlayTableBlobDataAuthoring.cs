@@ -2,6 +2,9 @@ using UnityEngine;
 
 namespace Example.Danmaku
 {
+    //Didn't finish implementing this.
+
+    //But its supposed to be the GameplayBlob asset
     public class GamePlayTableBlobDataAuthoring : MonoBehaviour /*, IConvertGameObjectToEntity*/
     {
         // public void Convert(Entity entity, EntityManager dstManager, GameObjectConversionSystem conversionSystem)

@@ -4,6 +4,8 @@ using UnityEngine;
 
 namespace Example.Danmaku
 {
+    //Not implemented
+    //But this is supposed to be what's going to be player movment system
     public class PlayerMovementSystem : SystemBase
     {
         protected override void OnUpdate()

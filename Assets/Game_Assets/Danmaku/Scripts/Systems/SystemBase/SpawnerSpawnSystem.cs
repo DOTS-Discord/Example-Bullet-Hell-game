@@ -6,6 +6,7 @@ using UnityEngine;
 
 namespace Example.Danmaku
 {
+    //Spawn the spawner!
     [UpdateInGroup(typeof(InitializationSystemGroup))]
     public class SpawnerSpawnSystem : SystemBase
     {

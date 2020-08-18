@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace Example.Danmaku
 {
+    //Haha. ignore this
     [System.Serializable]
     public class reorder : Reorderable<float2> { }
     

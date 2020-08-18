@@ -2,6 +2,8 @@ using Unity.Entities;
 
 namespace Example.Danmaku
 {
+    //Bullet Behaviour takes stuff from the BulletBehaviourSO
+    //to convert it to BlobAssets
     public struct BulletBehaviourData
     {
         public float acceleration;

@@ -5,6 +5,7 @@ using Unity.Physics;
 
 namespace Example.Danmaku
 {
+    //Kills the entity when the entity's health reaches 0.
     [UpdateAfter(typeof(BulletCollisionSystem))]
     public class KillOnZeroHealthSystem : SystemBase
     {

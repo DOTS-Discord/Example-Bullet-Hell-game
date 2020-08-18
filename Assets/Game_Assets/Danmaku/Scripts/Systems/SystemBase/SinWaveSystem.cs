@@ -5,6 +5,7 @@ using UnityEngine.Jobs;
 
 namespace Example.Danmaku
 {
+    //Make bullet move in a sine wave
     public class SinWaveSystem : SystemBase
     {
         protected override void OnUpdate()

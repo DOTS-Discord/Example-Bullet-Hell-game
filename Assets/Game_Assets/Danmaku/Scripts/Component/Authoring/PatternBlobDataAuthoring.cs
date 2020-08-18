@@ -12,6 +12,8 @@ namespace Example.Danmaku
     [System.Serializable]
     public class PatternDataReorArray : Reorderable<BulletPatternSO>
     { }
+
+    //Converting the Array's of SO's into blob assets and attaching it to the system itself.
     public class PatternBlobDataAuthoring : MonoBehaviour, IConvertGameObjectToEntity
     {
         public PatternDataReorArray patternDataList;
@@ -37,7 +39,7 @@ namespace Example.Danmaku
                         innerCircleSize = patternDataList[i].innerCircleSize
                     };
                 }
-
+                
                 dstManager.World.GetExistingSystem<BulletSpawnSystem>().patternDataBlob = blobBuilder.CreateBlobAssetReference<PatternBlobAsset>(Allocator.Persistent);
             }
 

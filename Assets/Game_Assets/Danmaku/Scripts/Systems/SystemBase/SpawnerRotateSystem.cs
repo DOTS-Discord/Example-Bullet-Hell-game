@@ -4,6 +4,7 @@ using Unity.Mathematics;
 
 namespace Example.Danmaku
 {
+    //make the spawner spin
     public class SpawnerRotateSystem : SystemBase
     {
         //public BlobAssetReference<SpawnerRotationBlobAsset> spawnerRotDataBlob;

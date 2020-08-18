@@ -5,6 +5,8 @@ using System;
 
 namespace Example.Danmaku
 {
+    //Wanted to use the GOConversionSystem to make my
+    //blob asset
     [UpdateInGroup(typeof(GameObjectBeforeConversionGroup))]
     public class BlobAssetConstructor : GameObjectConversionSystem
     {

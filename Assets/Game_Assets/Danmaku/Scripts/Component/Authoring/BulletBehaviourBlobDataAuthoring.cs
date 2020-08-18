@@ -5,9 +5,18 @@ using UnityEngine;
 
 namespace Example.Danmaku
 {
+    //Reorderable BulletBehaviorSO when attached to the editor
     [System.Serializable]
     public class BulletBehaviourReorderable : Reorderable<BulletBehaviourSO>
     { }
+
+    //I think I commented this out because I was testing a few stuff.
+
+    //But, this IConvertGameObjecToEntity is responsible to create the BlobAsset proper
+    //I would convert the Array of the SO's into a blob asset
+    
+    //Note that each IConvertGameObject that is responsible for creating blob assets gives the referrences to the 
+    //System level. Not the Component level.
     public class BulletBehaviourBlobDataAuthoring : MonoBehaviour, IConvertGameObjectToEntity
     {
         public BulletBehaviourReorderable bulletBehaviour;

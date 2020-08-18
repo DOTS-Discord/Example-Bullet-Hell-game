@@ -6,6 +6,7 @@ using Unity.Rendering;
 
 namespace Example.Danmaku
 {
+    //Pattern Data blob asset for making various bullet hell patterns
     [System.Serializable]
     public struct PatternData
     {

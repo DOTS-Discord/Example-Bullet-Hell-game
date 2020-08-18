@@ -4,6 +4,7 @@ using Unity.Mathematics;
 
 namespace Example.Danmaku
 {
+    //Kills the entity when their Time to Live <= 0
     [UpdateAfter(typeof(BulletMoveFowardSystem))]
     [UpdateAfter(typeof(TransformSystemGroup))]
     public class KillOnTimeSystem : SystemBase

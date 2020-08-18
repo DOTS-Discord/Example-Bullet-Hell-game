@@ -5,6 +5,7 @@ using System.Collections.Generic;
 
 namespace Example.Danmaku
 {
+    //again, turning various bullet hell prefabs into blobassets
     public class BulletPrefabBlobDataAuthoring : MonoBehaviour, IConvertGameObjectToEntity, IDeclareReferencedPrefabs
     {
         //Think of this as an array.
@@ -27,6 +28,8 @@ namespace Example.Danmaku
             }
         }
 
+        //You need this if you want to convert the prefabs into entities 
+        //(but they're just there to be instanciated in the Default World proper) 
         public void DeclareReferencedPrefabs(List<GameObject> referencedPrefabs)
         {
             referencedPrefabs.AddRange(bulletPrefab.Collection);

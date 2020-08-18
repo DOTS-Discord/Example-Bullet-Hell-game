@@ -9,22 +9,33 @@ using UnityEngine;
 
 namespace Example.Danmaku
 {
+    //hoo boy, this is a long one!
     public class BulletSpawnSystem : SystemBase
     {
-
+        //set up the ECB.
         EndSimulationEntityCommandBufferSystem _ecb;
         
         //TODO: We need to profile this thoroughly as we don't know when
         //a system is stopped, or suspended.
+
+        //these blobs is being set by the custom authoring components.
         public BlobAssetReference<BulletPrefabBlobAsset> bulletDataBlob;
         public BlobAssetReference<PatternBlobAsset> patternDataBlob;
+
+        //to gracefully dispose of them
+        //just put them here when the system stops running
         protected override void OnStopRunning()
         {
             bulletDataBlob.Dispose();
             patternDataBlob.Dispose();
+
+            //You could put them in onDestory
+            //but on my testing they're not getting disposed properly.
+            //probably because a system doesn't get destroyed, it's either running or stopping.
         }
         protected override void OnCreate()
         {
+            //pin the EndSimECB
             _ecb = World.GetOrCreateSystem<EndSimulationEntityCommandBufferSystem>();
         }
         protected override void OnUpdate()
@@ -54,23 +65,26 @@ namespace Example.Danmaku
             var pattern = patternDataBlob;
             var bullet = bulletDataBlob;
 
-            //
+            //spawn the spawner
             Entities
                 .WithNone<Prefab>() 
                 .ForEach((int entityInQueryIndex, in Rotation rotation, in Translation translation, in PatternBlobIndexData patternData, in BulletBlobIndexData bulletData, in GapData gap) =>
                 {
-                    if (gap.active)
+                    if (gap.active) //Now this is bad, because I wanted to keep this system instruction cache friendly, 
+                                    //but the perf cost isn't that much any. So I sticked with this. 
                     {
                         //Must be ref so not to work in a copy set.
                         ref var patternBlob = ref pattern.Value;
                         ref var bulletBlob = ref bullet.Value;
                         
                         var minRot = patternBlob.patternDataArray[patternData.index].minRotation;
-
+                        
+                        //some math on the equal number of angles according to whatever is written on the patternData blob
                         var bulletDenominator = minRot <= 0 ? patternBlob.patternDataArray[patternData.index].bulletNumber : patternBlob.patternDataArray[patternData.index].bulletNumber - 1;
 
                         var degreeGap = (patternBlob.patternDataArray[patternData.index].maxRotation - minRot) / bulletDenominator;
 
+                        //spawns X number of bullets depending what ever is written in the patternData blob
                         for (int i = 0; i < patternBlob.patternDataArray[patternData.index].bulletNumber; i++)
                         {
                             Entity spawnedEntity = ecb.Instantiate(entityInQueryIndex, bulletBlob.bulletPrefab[bulletData.index]);
@@ -102,6 +116,9 @@ namespace Example.Danmaku
                             {
                                 theta -= 360;
                             }
+
+                                                                                                               //I need this because 90, 180, 270 and 360 isn't a whole number
+                                                                                                               //because PI
                             var x = patternBlob.patternDataArray[patternData.index].innerCircleSize * math.cos(math.radians(theta == 90 || theta == 270 ? 0 : theta));
                             
                             var y = patternBlob.patternDataArray[patternData.index].innerCircleSize * math.sin(math.radians(theta == 180 || theta == 360 ? 0 : theta));
@@ -111,6 +128,8 @@ namespace Example.Danmaku
                             var displace =math.float3(patternBlob.patternDataArray[patternData.index].distanceFromSpawn, 0.001f);
 
                             //Spawn Point
+
+                            //You can displace the spawning of the bullets from the spawn point
                             ecb.SetComponent(entityInQueryIndex, spawnedEntity, new Translation
                             {
                                 Value = translation.Value + math.mul(rotation.Value,displace + point)

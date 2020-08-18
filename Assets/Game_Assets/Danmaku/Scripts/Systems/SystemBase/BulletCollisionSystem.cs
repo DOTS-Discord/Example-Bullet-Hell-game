@@ -10,6 +10,8 @@ using UnityEngine.UIElements;
 
 namespace Example.Danmaku
 {
+    //See if the bullet gets hit
+    //if hit, get destroyed.
     [UpdateAfter(typeof(EndFramePhysicsSystem))]
     public class BulletCollisionSystem : SystemBase
     {

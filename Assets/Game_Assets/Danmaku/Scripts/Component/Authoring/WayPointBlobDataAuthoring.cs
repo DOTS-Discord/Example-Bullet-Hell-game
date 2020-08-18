@@ -5,6 +5,8 @@ using UnityEngine;
 
 namespace Example.Danmaku
 {
+    //I wanted the spawner to move to different points of the screen in a loop.
+    //But as you can see, didn't implemented it yet.
     [System.Serializable]
     public class ReorderableTransforms : Reorderable<WayPointSO> { }
     public class WayPointBlobDataAuthoring : MonoBehaviour, IConvertGameObjectToEntity

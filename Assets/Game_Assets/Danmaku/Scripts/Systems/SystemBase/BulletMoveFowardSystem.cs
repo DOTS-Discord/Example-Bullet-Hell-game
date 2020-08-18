@@ -6,6 +6,7 @@ using Unity.Physics;
 
 namespace Example.Danmaku
 {
+    //makes the bullet move forward according to its rotation that's set by the bullet spawn system
     [UpdateBefore(typeof(TransformSystemGroup))]
     public class BulletMoveFowardSystem : SystemBase
     {
